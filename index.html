@@ -14,8 +14,6 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     body, html {
@@ -35,7 +33,7 @@
       align-items: center;
       height: 100%;
       min-height: 100dvh;
-      padding: 40px 20px calc(40px + env(safe-area-inset-bottom)) 20px;
+      padding: 35px 20px calc(35px + env(safe-area-inset-bottom)) 20px;
       background-image: url('assets/bg-mobile.jpg');
       background-size: cover;
       background-position: center;
@@ -52,106 +50,113 @@
 
     /* Logo bovenaan */
     .logo-container {
-      margin-top: 10px;
+      margin-top: 5px;
     }
 
     .logo {
-      height: 55px;
+      height: 48px;
       width: auto;
       display: block;
     }
 
-    /* Midden Sectie: Formulier + Manifest */
-    .center-content {
+    @media (min-width: 768px) {
+      .logo {
+        height: 55px;
+      }
+    }
+
+    /* Midden Sectie (Formulier + Beschrijving) */
+    .content-center {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 420px;
+      max-width: 340px;
     }
 
+    /* Input Sectie */
     .key-form {
       display: flex;
       align-items: center;
       width: 100%;
-      max-width: 320px;
-      margin-bottom: 35px;
+      margin-bottom: 25px;
     }
 
     .key-label {
       font-size: 15px;
-      font-weight: 300;
-      letter-spacing: 0.8px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
       margin-right: 15px;
-      color: #ffffff;
-      text-shadow: none;
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     }
 
     .key-input {
       flex: 1;
       background: transparent;
       border: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.8);
       color: #ffffff;
-      font-size: 15px;
-      font-weight: 300;
-      letter-spacing: 0.8px;
+      font-size: 16px;
       padding: 4px 0;
-      line-height: 1.2;
       outline: none;
       transition: border-color 0.3s ease;
-      text-shadow: none;
     }
 
     .key-input:focus {
       border-bottom-color: #ffffff;
     }
 
-    /* Foutmodus: Exact dezelfde typografie, kleur & dikte als het label */
-    .key-input.error {
-      font-size: 13px;
-      font-weight: 300;
-      letter-spacing: 0.8px;
-      text-align: center;
-      text-transform: lowercase;
-      color: #ffffff;
-      text-shadow: none !important;
-      box-shadow: none !important;
-    }
-
-    /* Manifest Tekst - Haarscherp & Goed Leesbaar */
-    .manifesto {
-      font-size: 12px;
+    /* Beschrijvende Tekst in het midden - Geoptimaliseerd voor Mobiel */
+    .intro-text {
+      font-size: 13.5px;
       font-weight: 400;
-      line-height: 1.8;
-      letter-spacing: 0.8px;
-      color: rgba(255, 255, 255, 0.95);
-      text-align: center;
-      padding: 0 10px;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); /* Subtiele lift voor perfecte contrastweergave op goud */
-    }
-
-    /* Adres onderaan - Zuiver wit */
-    .footer-address {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      color: rgba(255, 255, 255, 0.95);
-      text-align: center;
       line-height: 1.6;
-      text-shadow: none !important;
+      letter-spacing: 0.2px;
+      color: rgba(255, 255, 255, 0.92);
+      text-align: center;
+      max-width: 92%;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .intro-text p {
+      margin-bottom: 10px;
+    }
+
+    .intro-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (min-width: 768px) {
+      .intro-text {
+        font-size: 14px;
+        line-height: 1.7;
+        max-width: 100%;
+      }
+    }
+
+    /* Adres onderaan - Geoptimaliseerd voor Mobiel */
+    .footer-address {
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      color: #ffffff;
+      text-align: center;
+      line-height: 1.5;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
     }
 
     .footer-address span {
-      display: block; /* Op mobiel in 2 regels */
+      display: block; /* Opsplitsen op mobiel */
     }
 
     @media (min-width: 768px) {
       .footer-address {
         font-size: 12px;
+        font-weight: 400;
       }
       .footer-address span {
-        display: inline; /* Op desktop op 1 regel */
+        display: inline; /* 1 regel op desktop */
       }
     }
   </style>
@@ -165,18 +170,16 @@
       <img src="1O1V-signage-light.png" alt="1O1V Logo" class="logo">
     </div>
 
-    <!-- Midden Sectie -->
-    <div class="center-content">
-      <!-- Input Veld -->
-      <form class="key-form" id="keyForm">
+    <!-- Midden Content (Input + Introductie) -->
+    <div class="content-center">
+      <form class="key-form" onsubmit="event.preventDefault();">
         <label for="key" class="key-label">key</label>
         <input type="password" id="key" name="key" class="key-input" autocomplete="off" autofocus>
       </form>
 
-      <!-- Manifest -->
-      <div class="manifesto">
-        1O1V is built to preserve and protect exceptional craftsmanship.<br>
-        No algorithms, no public feeds, no instant replication. Only verified collectors, behind a closed door.
+      <div class="intro-text">
+        <p>1O1V is built to preserve and protect exceptional craftsmanship.</p>
+        <p>No algorithms, no public feeds, no instant replication. Only verified collectors, behind a closed door.</p>
       </div>
     </div>
 
@@ -186,37 +189,6 @@
     </div>
 
   </div>
-
-  <script>
-    const form = document.getElementById('keyForm');
-    const input = document.getElementById('key');
-    let isShowingError = false;
-
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      if (input.value.trim() !== '' && !isShowingError) {
-        isShowingError = true;
-        input.type = 'text';
-        input.classList.add('error');
-        input.value = 'access unauthorized';
-        input.blur();
-      }
-    });
-
-    // Reset direct zodra de gebruiker weer klikt of typt
-    input.addEventListener('focus', resetInput);
-    input.addEventListener('keydown', resetInput);
-
-    function resetInput() {
-      if (isShowingError) {
-        isShowingError = false;
-        input.value = '';
-        input.type = 'password';
-        input.classList.remove('error');
-      }
-    }
-  </script>
 
 </body>
 </html>
