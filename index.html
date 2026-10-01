@@ -63,56 +63,73 @@
       display: block;
     }
 
-    /* Custom Glassmorphism Taalkiezer Rechtsboven */
-    .lang-container {
+    /* Top Right Menu (Navigatie + Taalkiezer) */
+    .top-right-nav {
       position: absolute;
       top: 25px;
       right: 25px;
       z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .clients-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 1px;
+      opacity: 0.8;
+      transition: opacity 0.2s ease;
+    }
+
+    .clients-link:hover {
+      opacity: 1;
+    }
+
+    /* Minimalistische Taalkiezer (Puur tekst + pijltje) */
+    .lang-container {
+      position: relative;
     }
 
     .lang-active-btn {
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
+      background: none;
+      border: none;
       color: #ffffff;
-      font-size: 11px;
-      letter-spacing: 1.5px;
-      padding: 6px 14px;
+      font-size: 12px;
+      letter-spacing: 1px;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
-      transition: all 0.3s ease;
+      gap: 4px;
+      opacity: 0.8;
+      transition: opacity 0.2s ease;
+      padding: 0;
     }
 
     .lang-active-btn:hover {
-      background: rgba(0, 0, 0, 0.5);
-      border-color: rgba(255, 255, 255, 0.4);
+      opacity: 1;
     }
 
     .lang-active-btn::after {
       content: '▾';
       font-size: 9px;
-      opacity: 0.7;
     }
 
     .lang-menu {
       position: absolute;
-      top: 110%;
+      top: 130%;
       right: 0;
-      background: rgba(15, 12, 8, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 12px;
+      background: rgba(15, 12, 8, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
       padding: 6px 0;
       display: none;
       flex-direction: column;
-      min-width: 75px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      min-width: 65px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
 
     .lang-menu.open {
@@ -124,8 +141,8 @@
       border: none;
       color: rgba(255, 255, 255, 0.7);
       font-size: 11px;
-      letter-spacing: 1.5px;
-      padding: 8px 16px;
+      letter-spacing: 1px;
+      padding: 6px 12px;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -134,10 +151,9 @@
     .lang-option:hover, .lang-option.selected {
       color: #ffffff;
       background: rgba(255, 255, 255, 0.1);
-      font-weight: 600;
     }
 
-    /* Midden Sectie */
+    /* Midden Content */
     .content-center {
       display: flex;
       flex-direction: column;
@@ -147,7 +163,6 @@
       margin: auto 0;
     }
 
-    /* Introductietekst (Veel groter op mobiel) */
     .intro-text {
       font-size: 17px;
       font-weight: 400;
@@ -155,7 +170,6 @@
       letter-spacing: 0.2px;
       color: #ffffff;
       text-align: center;
-      margin-bottom: 35px;
     }
 
     @media (min-width: 768px) {
@@ -163,38 +177,6 @@
         font-size: 14px;
         line-height: 1.7;
       }
-    }
-
-    /* Input Formulier */
-    .key-form {
-      display: flex;
-      align-items: center;
-      width: 100%;
-    }
-
-    .key-label {
-      font-size: 15px;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      margin-right: 15px;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .key-input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.8);
-      color: #ffffff;
-      font-size: 16px;
-      padding: 6px 0;
-      outline: none;
-      transition: border-color 0.3s ease;
-      border-radius: 0;
-    }
-
-    .key-input:focus {
-      border-bottom-color: #ffffff;
     }
 
     /* Footer Adres */
@@ -225,18 +207,22 @@
 
   <div class="container">
     
-    <!-- Custom Glass Taalkiezer -->
-    <div class="lang-container">
-      <button class="lang-active-btn" id="lang-btn" onclick="toggleLangMenu()">EN</button>
-      <div class="lang-menu" id="lang-menu">
-        <button class="lang-option" onclick="selectLanguage('en')">EN</button>
-        <button class="lang-option" onclick="selectLanguage('fr')">FR</button>
-        <button class="lang-option" onclick="selectLanguage('it')">IT</button>
-        <button class="lang-option" onclick="selectLanguage('de')">DE</button>
-        <button class="lang-option" onclick="selectLanguage('es')">ES</button>
-        <button class="lang-option" onclick="selectLanguage('zh')">ZH</button>
-        <button class="lang-option" onclick="selectLanguage('ja')">JA</button>
-        <button class="lang-option" onclick="selectLanguage('ko')">KO</button>
+    <!-- Top Right Navigatie -->
+    <div class="top-right-nav">
+      <a href="#clients" class="clients-link">clients</a>
+
+      <div class="lang-container">
+        <button class="lang-active-btn" id="lang-btn" onclick="toggleLangMenu()">EN</button>
+        <div class="lang-menu" id="lang-menu">
+          <button class="lang-option" onclick="selectLanguage('en')">EN</button>
+          <button class="lang-option" onclick="selectLanguage('fr')">FR</button>
+          <button class="lang-option" onclick="selectLanguage('it')">IT</button>
+          <button class="lang-option" onclick="selectLanguage('de')">DE</button>
+          <button class="lang-option" onclick="selectLanguage('es')">ES</button>
+          <button class="lang-option" onclick="selectLanguage('zh')">ZH</button>
+          <button class="lang-option" onclick="selectLanguage('ja')">JA</button>
+          <button class="lang-option" onclick="selectLanguage('ko')">KO</button>
+        </div>
       </div>
     </div>
 
@@ -248,13 +234,8 @@
     <!-- Midden Content -->
     <main class="content-center">
       <div class="intro-text" id="intro-text">
-        <!-- Dynamisch geladen -->
+        <!-- Dynamisch geladen via JS -->
       </div>
-
-      <form class="key-form" id="key-form" onsubmit="handleKeySubmit(event)">
-        <label for="key" id="key-label" class="key-label">key</label>
-        <input type="password" id="key" name="key" class="key-input" autocomplete="off" autofocus>
-      </form>
     </main>
 
     <!-- Footer Adres -->
@@ -267,42 +248,34 @@
   <script>
     const translations = {
       en: {
-        label: "key",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Switzerland</span>",
         text: "1O1V is built to preserve and protect exceptional creativity and craftsmanship for verified collectors, behind a closed door."
       },
       fr: {
-        label: "clé",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zurich, Suisse</span>",
         text: "1O1V est conçu pour préserver et protéger une créativité et un savoir-faire d'exception pour des collectionneurs vérifiés, derrière une porte close."
       },
       it: {
-        label: "chiave",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zurigo, Svizzera</span>",
         text: "1O1V è nato per preservare e proteggere la creatività e la maestria artigianale d'eccezione per collezionisti verificati, a porte chiuse."
       },
       de: {
-        label: "Schlüssel",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Schweiz</span>",
         text: "1O1V wurde geschaffen, um außergewöhnliche Kreativität und Handwerkskunst für verifizierte Sammler hinter verschlossener Tür zu bewahren und zu schützen."
       },
       es: {
-        label: "clave",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zúrich, Suiza</span>",
         text: "1O1V está creado para preservar y proteger la creatividad y artesanía excepcionales para coleccionistas verificados, tras una puerta cerrada."
       },
       zh: {
-        label: "密钥",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 苏黎世, 瑞士</span>",
         text: "1O1V 旨在为经过验证的收藏家保护与传承非凡的创意与卓越工艺，尽在闭门之后。"
       },
       ja: {
-        label: "キー",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 チューリッヒ, スイス</span>",
         text: "1O1Vは、認証されたコレクターのために、非公開の場所で特別な創造性と職人技を保存・保護するために作られています。"
       },
       ko: {
-        label: "키",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 취리히, 스위스</span>",
         text: "1O1V는 검증된 수집가를 위해 닫힌 문 뒤에서 특별한 창의성과 장인 정신을 보존하고 보호하기 위해 설립되었습니다."
       }
@@ -315,7 +288,6 @@
     function selectLanguage(lang) {
       const data = translations[lang] || translations.en;
       
-      document.getElementById('key-label').innerText = data.label;
       document.getElementById('intro-text').innerText = data.text;
       document.getElementById('footer-address').innerHTML = data.address;
       document.getElementById('lang-btn').innerText = lang.toUpperCase();
@@ -333,15 +305,6 @@
         document.getElementById('lang-menu').classList.remove('open');
       }
     });
-
-    function handleKeySubmit(event) {
-      event.preventDefault();
-      const inputVal = document.getElementById('key').value.trim();
-      
-      if (inputVal.length > 0) {
-        console.log("Submitted key:", inputVal);
-      }
-    }
 
     const userLang = (navigator.language || navigator.userLanguage).slice(0, 2).toLowerCase();
     selectLanguage(translations[userLang] ? userLang : 'en');
