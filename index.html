@@ -99,15 +99,15 @@
       border-bottom-color: #ffffff;
     }
 
-    /* Foutmelding Styling */
+    /* Foutmelding Styling - Strak Wit */
     .error-message {
       display: none; /* Standaard onzichtbaar */
       margin-top: 12px;
       font-size: 12px;
-      letter-spacing: 0.8px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      color: #ff6b6b; /* Subtiel helderrood */
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
     }
 
     /* Adres onderaan - Geoptimaliseerd voor mobiel */
@@ -152,7 +152,7 @@
         <input type="password" id="key" name="key" class="key-input" autocomplete="off" autofocus>
       </form>
       <!-- Foutmelding -->
-      <div id="errorMessage" class="error-message">Access Unauthorized</div>
+      <div id="errorMessage" class="error-message">ACCESS UNAUTHORIZED</div>
     </div>
 
     <!-- Footer Adres -->
@@ -171,11 +171,12 @@
       event.preventDefault(); // Voorkomt herladen van de pagina
       
       if (input.value.trim() !== '') {
-        errorMsg.style.display = 'block'; // Toon foutmelding bij een invoer
+        input.value = ''; // Maakt het invoerveld direct leeg
+        errorMsg.style.display = 'block'; // Toont de witte melding
       }
     });
 
-    // Verberg de foutmelding zodra de gebruiker weer begint te typen
+    // Verberg de melding weer zodra de bezoeker een nieuwe sleutel begint te typen
     input.addEventListener('input', function() {
       errorMsg.style.display = 'none';
     });
