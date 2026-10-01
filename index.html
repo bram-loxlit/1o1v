@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>1O1V</title>
   
-  <!-- Gouden Bolletje Favicon (PNG) -->
+  <!-- Gouden Bolletje Favicon -->
   <link rel="icon" type="image/png" href="assets/favicon.png">
 
   <style>
@@ -25,7 +25,7 @@
       overflow: hidden;
     }
 
-    /* Container met Achtergrond (Standaard Mobiel) */
+    /* Container met Achtergrond */
     .container {
       display: flex;
       flex-direction: column;
@@ -33,18 +33,17 @@
       align-items: center;
       height: 100%;
       min-height: 100dvh;
-      padding: 35px 20px calc(35px + env(safe-area-inset-bottom)) 20px;
+      padding: 35px 20px calc(25px + env(safe-area-inset-bottom)) 20px;
       background-image: url('assets/bg-mobile.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
 
-    /* Desktop Achtergrond via Media Query */
     @media (min-width: 768px) {
       .container {
         background-image: url('assets/bg-desktop.jpg');
-        padding: 60px 20px 40px 20px;
+        padding: 50px 20px 35px 20px;
       }
     }
 
@@ -65,7 +64,7 @@
       }
     }
 
-    /* Midden Sectie (Formulier + Beschrijving) */
+    /* Midden Sectie */
     .content-center {
       display: flex;
       flex-direction: column;
@@ -107,7 +106,7 @@
       border-bottom-color: #ffffff;
     }
 
-    /* Beschrijvende Tekst in het midden - Geoptimaliseerd voor Mobiel */
+    /* Introductietekst */
     .intro-text {
       font-size: 13.5px;
       font-weight: 400;
@@ -135,28 +134,59 @@
       }
     }
 
-    /* Adres onderaan - Geoptimaliseerd voor Mobiel */
-    .footer-address {
-      font-size: 12.5px;
-      font-weight: 500;
-      letter-spacing: 0.4px;
+    /* Footer / Bottom Area */
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Taalschakelaar */
+    .lang-switch {
+      display: flex;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
       color: #ffffff;
+      cursor: pointer;
+      padding: 2px;
+      font-size: 11px;
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+    }
+
+    .lang-btn.active, .lang-btn:hover {
+      opacity: 1;
+      font-weight: 600;
+      border-bottom: 1px solid #ffffff;
+    }
+
+    /* Adres onderaan */
+    .footer-address {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.4px;
+      color: rgba(255, 255, 255, 0.85);
       text-align: center;
       line-height: 1.5;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
     }
 
     .footer-address span {
-      display: block; /* Opsplitsen op mobiel */
+      display: block;
     }
 
     @media (min-width: 768px) {
-      .footer-address {
-        font-size: 12px;
-        font-weight: 400;
-      }
       .footer-address span {
-        display: inline; /* 1 regel op desktop */
+        display: inline;
       }
     }
   </style>
@@ -170,25 +200,88 @@
       <img src="1O1V-signage-light.png" alt="1O1V Logo" class="logo">
     </div>
 
-    <!-- Midden Content (Input + Introductie) -->
+    <!-- Midden Content -->
     <div class="content-center">
       <form class="key-form" onsubmit="event.preventDefault();">
-        <label for="key" class="key-label">key</label>
+        <label for="key" id="key-label" class="key-label">key</label>
         <input type="password" id="key" name="key" class="key-input" autocomplete="off" autofocus>
       </form>
 
-      <div class="intro-text">
-        <p>1O1V is built to preserve and protect exceptional craftsmanship.</p>
-        <p>No algorithms, no public feeds, no instant replication. Only verified collectors, behind a closed door.</p>
+      <div class="intro-text" id="intro-text">
+        <!-- Content wordt dynamisch geladen via JS -->
       </div>
     </div>
 
-    <!-- Footer Adres -->
-    <div class="footer-address">
-      <span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Switzerland</span>
+    <!-- Footer Area -->
+    <div class="footer-container">
+      <!-- Subtiele Taalschakelaar -->
+      <div class="lang-switch">
+        <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
+        <button class="lang-btn" onclick="setLanguage('it')">IT</button>
+        <button class="lang-btn" onclick="setLanguage('de')">DE</button>
+        <button class="lang-btn" onclick="setLanguage('zh')">ZH</button>
+      </div>
+
+      <!-- Adres -->
+      <div class="footer-address" id="footer-address">
+        <span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Switzerland</span>
+      </div>
     </div>
 
   </div>
+
+  <script>
+    const translations = {
+      en: {
+        label: "key",
+        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Switzerland</span>",
+        p1: "1O1V is built to preserve and protect exceptional craftsmanship.",
+        p2: "No algorithms, no public feeds, no instant replication. Only verified collectors, behind a closed door."
+      },
+      fr: {
+        label: "clé",
+        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zurich, Suisse</span>",
+        p1: "1O1V est conçu pour préserver et protéger un savoir-faire d'exception.",
+        p2: "Pas d'algorithmes, pas de flux publics, pas de réplication instantanée. Uniquement des collectionneurs vérifiés, derrière une porte close."
+      },
+      it: {
+        label: "chiave",
+        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zurigo, Svizzera</span>",
+        p1: "1O1V è nato per preservare e proteggere la maestria artigianale d'eccezione.",
+        p2: "Nessun algoritmo, nessun feed pubblico, nessuna replicazione istantanea. Solo collezionisti verificati, a porte chiuse."
+      },
+      de: {
+        label: "Schlüssel",
+        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Schweiz</span>",
+        p1: "1O1V wurde geschaffen, um außergewöhnliche Handwerkskunst zu bewahren und zu schützen.",
+        p2: "Keine Algorithmen, keine öffentlichen Feeds, keine sofortige Vervielfältigung. Nur verifizierte Sammler, hinter verschlossener Tür."
+      },
+      zh: {
+        label: "密钥",
+        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 苏黎世, 瑞士</span>",
+        p1: "1O1V 旨在保护与传承卓越的非凡工艺。",
+        p2: "无算法，无公开动态，无即时复制。只有经过验证的收藏家，尽在闭门之后。"
+      }
+    };
+
+    function setLanguage(lang) {
+      const data = translations[lang] || translations.en;
+      
+      document.getElementById('key-label').innerText = data.label;
+      document.getElementById('intro-text').innerHTML = `<p>${data.p1}</p><p>${data.p2}</p>`;
+      document.getElementById('footer-address').innerHTML = data.address;
+
+      // Update active state op knoppen
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
+      });
+    }
+
+    // Automatische detectie op basis van browsertaal
+    const userLang = (navigator.language || navigator.userLanguage).slice(0, 2).toLowerCase();
+    setLanguage(translations[userLang] ? userLang : 'en');
+  </script>
 
 </body>
 </html>
