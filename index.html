@@ -59,19 +59,12 @@
       display: block;
     }
 
-    /* Input & Form Wrapper */
-    .form-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 320px;
-    }
-
+    /* Input Sectie */
     .key-form {
       display: flex;
       align-items: center;
       width: 100%;
+      max-width: 340px;
     }
 
     .key-label {
@@ -89,7 +82,8 @@
       border: none;
       border-bottom: 1px solid rgba(255, 255, 255, 0.8);
       color: #ffffff;
-      font-size: 16px;
+      font-size: 15px;
+      letter-spacing: 0.5px;
       padding: 4px 0;
       outline: none;
       transition: border-color 0.3s ease;
@@ -99,11 +93,9 @@
       border-bottom-color: #ffffff;
     }
 
-    /* Foutmelding Styling - Strak Wit */
-    .error-message {
-      display: none; /* Standaard onzichtbaar */
-      margin-top: 12px;
-      font-size: 12px;
+    /* Invoerveld in Foutmodus (Wanneer 'ACCESS UNAUTHORIZED' wordt getoond) */
+    .key-input.error {
+      font-size: 11px;
       letter-spacing: 1.2px;
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.9);
@@ -145,15 +137,11 @@
       <img src="1O1V-signage-light.png" alt="1O1V Logo" class="logo">
     </div>
 
-    <!-- Input Sectie -->
-    <div class="form-wrapper">
-      <form class="key-form" id="keyForm">
-        <label for="key" class="key-label">key</label>
-        <input type="password" id="key" name="key" class="key-input" autocomplete="off" autofocus>
-      </form>
-      <!-- Foutmelding -->
-      <div id="errorMessage" class="error-message">ACCESS UNAUTHORIZED</div>
-    </div>
+    <!-- Input Veld -->
+    <form class="key-form" id="keyForm">
+      <label for="key" class="key-label">key</label>
+      <input type="password" id="key" name="key" class="key-input" autocomplete="off" autofocus>
+    </form>
 
     <!-- Footer Adres -->
     <div class="footer-address">
@@ -165,21 +153,31 @@
   <script>
     const form = document.getElementById('keyForm');
     const input = document.getElementById('key');
-    const errorMsg = document.getElementById('errorMessage');
+    let isShowingError = false;
 
     form.addEventListener('submit', function(event) {
       event.preventDefault(); // Voorkomt herladen van de pagina
       
-      if (input.value.trim() !== '') {
-        input.value = ''; // Maakt het invoerveld direct leeg
-        errorMsg.style.display = 'block'; // Toont de witte melding
+      if (input.value.trim() !== '' && !isShowingError) {
+        isShowingError = true;
+        input.type = 'text'; // Verandert van bolletjes naar leesbare tekst
+        input.classList.add('error');
+        input.value = 'ACCESS UNAUTHORIZED';
       }
     });
 
-    // Verberg de melding weer zodra de bezoeker een nieuwe sleutel begint te typen
-    input.addEventListener('input', function() {
-      errorMsg.style.display = 'none';
-    });
+    // Zodra de bezoeker weer klikt of begint te typen, herstellen we de input
+    input.addEventListener('focus', resetInput);
+    input.addEventListener('keydown', resetInput);
+
+    function resetInput() {
+      if (isShowingError) {
+        isShowingError = false;
+        input.value = '';
+        input.type = 'password'; // Zet het weer om naar een wachtwoordveld
+        input.classList.remove('error');
+      }
+    }
   </script>
 
 </body>
