@@ -22,7 +22,7 @@
       height: 100%;
       height: 100dvh;
       width: 100%;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: #ffffff;
       overflow: hidden;
     }
@@ -67,7 +67,7 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 380px;
+      max-width: 420px;
     }
 
     .key-form {
@@ -75,16 +75,15 @@
       align-items: center;
       width: 100%;
       max-width: 320px;
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
 
     .key-label {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       font-size: 15px;
       font-weight: 300;
       letter-spacing: 0.8px;
       margin-right: 15px;
-      color: rgba(255, 255, 255, 0.85);
+      color: #ffffff;
       text-shadow: none;
     }
 
@@ -94,7 +93,6 @@
       border: none;
       border-bottom: 1px solid rgba(255, 255, 255, 0.7);
       color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       font-size: 15px;
       font-weight: 300;
       letter-spacing: 0.8px;
@@ -111,41 +109,34 @@
 
     /* Foutmodus: Exact dezelfde typografie, kleur & dikte als het label */
     .key-input.error {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       font-size: 13px;
       font-weight: 300;
       letter-spacing: 0.8px;
       text-align: center;
       text-transform: lowercase;
-      color: rgba(255, 255, 255, 0.85);
+      color: #ffffff;
       text-shadow: none !important;
       box-shadow: none !important;
     }
 
-    /* Manifest Tekst */
+    /* Manifest Tekst - Haarscherp & Goed Leesbaar */
     .manifesto {
-      font-size: 11px;
-      font-weight: 300;
-      line-height: 1.7;
-      letter-spacing: 0.6px;
-      color: rgba(255, 255, 255, 0.65);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.8;
+      letter-spacing: 0.8px;
+      color: rgba(255, 255, 255, 0.95);
       text-align: center;
       padding: 0 10px;
-      text-shadow: none;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); /* Subtiele lift voor perfecte contrastweergave op goud */
     }
 
-    .manifesto span {
-      display: block;
-      margin-top: 4px;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    /* Adres onderaan - Zuiver wit zonder schaduw */
+    /* Adres onderaan - Zuiver wit */
     .footer-address {
       font-size: 12px;
       font-weight: 400;
       letter-spacing: 0.5px;
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(255, 255, 255, 0.95);
       text-align: center;
       line-height: 1.6;
       text-shadow: none !important;
@@ -186,7 +177,6 @@
       <div class="manifesto">
         1O1V is built to preserve and protect exceptional craftsmanship.<br>
         No algorithms, no public feeds, no instant replication. Only verified collectors, behind a closed door.
-        <span>Clients by invite only.</span>
       </div>
     </div>
 
