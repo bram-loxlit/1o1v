@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>1O1V</title>
   
-  <!-- Gouden Bolletje Favicon -->
   <link rel="icon" type="image/png" href="assets/favicon.png">
 
   <style>
-    /* Reset & Basisinstellingen */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -25,15 +23,16 @@
       overflow: hidden;
     }
 
-    /* Container met Achtergrond */
+    /* Container */
     .container {
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
       height: 100%;
       min-height: 100dvh;
-      padding: 35px 20px calc(25px + env(safe-area-inset-bottom)) 20px;
+      padding: 30px 20px calc(25px + env(safe-area-inset-bottom)) 20px;
       background-image: url('assets/bg-mobile.jpg');
       background-size: cover;
       background-position: center;
@@ -43,58 +42,119 @@
     @media (min-width: 768px) {
       .container {
         background-image: url('assets/bg-desktop.jpg');
-        padding: 50px 20px 35px 20px;
+        padding: 40px 40px 30px 40px;
       }
     }
 
-    /* Logo bovenaan */
+    /* Taalwissel Rechtsboven */
+    .lang-switch {
+      position: absolute;
+      top: 25px;
+      right: 20px;
+      display: flex;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      z-index: 10;
+    }
+
+    @media (min-width: 768px) {
+      .lang-switch {
+        top: 35px;
+        right: 40px;
+        gap: 12px;
+      }
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      padding: 2px;
+      font-size: 11px;
+      opacity: 0.5;
+      transition: opacity 0.2s ease;
+    }
+
+    .lang-btn.active, .lang-btn:hover {
+      opacity: 1;
+      font-weight: 600;
+      border-bottom: 1px solid #ffffff;
+    }
+
+    /* Logo Centraal Bovenaan (Klein) */
     .logo-container {
       margin-top: 5px;
     }
 
     .logo {
-      height: 48px;
+      height: 32px;
       width: auto;
       display: block;
     }
 
     @media (min-width: 768px) {
       .logo {
-        height: 55px;
+        height: 38px;
       }
     }
 
-    /* Midden Sectie */
+    /* Midden Sectie: Introductie tekst daaronder & Key Formulier */
     .content-center {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 340px;
+      max-width: 360px;
     }
 
-    /* Input Sectie */
+    .intro-text {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.6;
+      letter-spacing: 0.2px;
+      color: rgba(255, 255, 255, 0.95);
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .intro-text p {
+      margin-bottom: 8px;
+    }
+
+    .intro-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (min-width: 768px) {
+      .intro-text {
+        font-size: 14px;
+        line-height: 1.6;
+      }
+    }
+
+    /* Input Formulier */
     .key-form {
       display: flex;
       align-items: center;
       width: 100%;
-      margin-bottom: 25px;
     }
 
     .key-label {
-      font-size: 15px;
-      font-weight: 400;
+      font-size: 14px;
+      font-weight: 300;
       letter-spacing: 0.5px;
       margin-right: 15px;
       color: rgba(255, 255, 255, 0.9);
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     }
 
     .key-input {
       flex: 1;
       background: transparent;
       border: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
       color: #ffffff;
       font-size: 16px;
       padding: 4px 0;
@@ -106,78 +166,14 @@
       border-bottom-color: #ffffff;
     }
 
-    /* Introductietekst */
-    .intro-text {
-      font-size: 13.5px;
-      font-weight: 400;
-      line-height: 1.6;
-      letter-spacing: 0.2px;
-      color: rgba(255, 255, 255, 0.92);
-      text-align: center;
-      max-width: 92%;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    .intro-text p {
-      margin-bottom: 10px;
-    }
-
-    .intro-text p:last-child {
-      margin-bottom: 0;
-    }
-
-    @media (min-width: 768px) {
-      .intro-text {
-        font-size: 14px;
-        line-height: 1.7;
-        max-width: 100%;
-      }
-    }
-
-    /* Footer / Bottom Area */
-    .footer-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-
-    /* Taalschakelaar */
-    .lang-switch {
-      display: flex;
-      gap: 10px;
-      font-size: 11px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      opacity: 0.75;
-    }
-
-    .lang-btn {
-      background: none;
-      border: none;
-      color: #ffffff;
-      cursor: pointer;
-      padding: 2px;
-      font-size: 11px;
-      opacity: 0.6;
-      transition: opacity 0.2s ease;
-    }
-
-    .lang-btn.active, .lang-btn:hover {
-      opacity: 1;
-      font-weight: 600;
-      border-bottom: 1px solid #ffffff;
-    }
-
-    /* Adres onderaan */
+    /* Adres Onderaan */
     .footer-address {
       font-size: 12px;
-      font-weight: 400;
+      font-weight: 300;
       letter-spacing: 0.4px;
       color: rgba(255, 255, 255, 0.85);
       text-align: center;
-      line-height: 1.5;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+      line-height: 1.4;
     }
 
     .footer-address span {
@@ -195,38 +191,35 @@
 
   <div class="container">
     
-    <!-- Logo -->
+    <!-- Taalwissel Rechtsboven -->
+    <div class="lang-switch">
+      <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
+      <button class="lang-btn" onclick="setLanguage('it')">IT</button>
+      <button class="lang-btn" onclick="setLanguage('de')">DE</button>
+      <button class="lang-btn" onclick="setLanguage('zh')">ZH</button>
+    </div>
+
+    <!-- Logo Centraal Bovenaan -->
     <div class="logo-container">
       <img src="1O1V-signage-light.png" alt="1O1V Logo" class="logo">
     </div>
 
     <!-- Midden Content -->
     <div class="content-center">
+      <div class="intro-text" id="intro-text">
+        <!-- Content via JS -->
+      </div>
+
       <form class="key-form" onsubmit="event.preventDefault();">
         <label for="key" id="key-label" class="key-label">key</label>
         <input type="password" id="key" name="key" class="key-input" autocomplete="off" autofocus>
       </form>
-
-      <div class="intro-text" id="intro-text">
-        <!-- Content wordt dynamisch geladen via JS -->
-      </div>
     </div>
 
-    <!-- Footer Area -->
-    <div class="footer-container">
-      <!-- Subtiele Taalschakelaar -->
-      <div class="lang-switch">
-        <button class="lang-btn" onclick="setLanguage('en')">EN</button>
-        <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
-        <button class="lang-btn" onclick="setLanguage('it')">IT</button>
-        <button class="lang-btn" onclick="setLanguage('de')">DE</button>
-        <button class="lang-btn" onclick="setLanguage('zh')">ZH</button>
-      </div>
-
-      <!-- Adres -->
-      <div class="footer-address" id="footer-address">
-        <span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Switzerland</span>
-      </div>
+    <!-- Adres Onderaan -->
+    <div class="footer-address" id="footer-address">
+      <span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Switzerland</span>
     </div>
 
   </div>
@@ -272,13 +265,11 @@
       document.getElementById('intro-text').innerHTML = `<p>${data.p1}</p><p>${data.p2}</p>`;
       document.getElementById('footer-address').innerHTML = data.address;
 
-      // Update active state op knoppen
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
       });
     }
 
-    // Automatische detectie op basis van browsertaal
     const userLang = (navigator.language || navigator.userLanguage).slice(0, 2).toLowerCase();
     setLanguage(translations[userLang] ? userLang : 'en');
   </script>
