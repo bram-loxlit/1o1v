@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>1O1V</title>
   
-  <!-- Gouden Bolletje Favicon (PNG) -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/favicon.png">
 
   <style>
@@ -48,7 +48,7 @@
       }
     }
 
-    /* Header: Logo gecentreerd */
+    /* Header: Logo strak gecentreerd */
     .header {
       position: relative;
       width: 100%;
@@ -58,47 +58,35 @@
       margin-top: 5px;
     }
 
-    /* Mobiel Formaat Logo */
+    /* Logo op desktop weer subtiel en klein */
     .logo {
-      height: 48px;
+      height: 38px;
       width: auto;
       display: block;
     }
 
-    /* Desktop Formaat Logo (Hersteld) */
-    @media (min-width: 768px) {
-      .logo {
-        height: 55px;
-      }
-    }
-
-    /* Taalschakelaar rechts uitgelijnd zonder het logo te verschuiven */
-    .lang-switch {
+    /* Subtiele Dropdown Rechtsboven */
+    .lang-dropdown {
       position: absolute;
       right: 0;
       top: 50%;
       transform: translateY(-50%);
-      display: flex;
-      gap: 8px;
-      font-size: 11px;
-      letter-spacing: 0.8px;
-    }
-
-    .lang-btn {
-      background: none;
+      background: transparent;
       border: none;
       color: #ffffff;
-      cursor: pointer;
-      padding: 2px 0;
       font-size: 11px;
-      opacity: 0.55;
-      transition: opacity 0.2s ease;
+      letter-spacing: 1px;
+      outline: none;
+      cursor: pointer;
+      opacity: 0.75;
+      padding: 2px 0;
+      text-transform: uppercase;
     }
 
-    .lang-btn.active, .lang-btn:hover {
-      opacity: 1;
-      font-weight: 600;
-      border-bottom: 1px solid #ffffff;
+    .lang-dropdown option {
+      background: #111111;
+      color: #ffffff;
+      font-size: 12px;
     }
 
     /* Midden Sectie */
@@ -111,7 +99,7 @@
       margin: auto 0;
     }
 
-    /* Introductietekst (Strak, GEEN schaduwen) */
+    /* Introductietekst (GEEN schaduw) */
     .intro-text {
       font-size: 13.5px;
       font-weight: 400;
@@ -160,7 +148,7 @@
       border-bottom-color: #ffffff;
     }
 
-    /* Adres onderaan (GEEN schaduwen) */
+    /* Adres onderaan (GEEN schaduw) */
     .footer-address {
       font-size: 12.5px;
       font-weight: 400;
@@ -191,19 +179,24 @@
     <!-- Header -->
     <header class="header">
       <img src="1O1V-signage-light.png" alt="1O1V Logo" class="logo">
-      <nav class="lang-switch">
-        <button class="lang-btn" onclick="setLanguage('en')">EN</button>
-        <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
-        <button class="lang-btn" onclick="setLanguage('it')">IT</button>
-        <button class="lang-btn" onclick="setLanguage('de')">DE</button>
-        <button class="lang-btn" onclick="setLanguage('zh')">ZH</button>
-      </nav>
+      
+      <!-- Dropdown Talen -->
+      <select id="lang-select" class="lang-dropdown" onchange="setLanguage(this.value)">
+        <option value="en">EN</option>
+        <option value="fr">FR</option>
+        <option value="it">IT</option>
+        <option value="de">DE</option>
+        <option value="es">ES</option>
+        <option value="zh">ZH</option>
+        <option value="ja">JA</option>
+        <option value="ko">KO</option>
+      </select>
     </header>
 
     <!-- Midden Content -->
     <main class="content-center">
       <div class="intro-text" id="intro-text">
-        <!-- Dynamisch geladen via JS -->
+        <!-- Dynamisch via JS -->
       </div>
 
       <form class="key-form" onsubmit="event.preventDefault();">
@@ -241,10 +234,25 @@
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Schweiz</span>",
         text: "1O1V wurde geschaffen, um außergewöhnliche Kreativität und Handwerkskunst für verifizierte Sammler hinter verschlossener Tür zu bewahren und zu schützen."
       },
+      es: {
+        label: "clave",
+        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zúrich, Suiza</span>",
+        text: "1O1V está creado para preservar y proteger la creatividad y artesanía excepcionales para coleccionistas verificados, tras una puerta cerrada."
+      },
       zh: {
         label: "密钥",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 苏黎世, 瑞士</span>",
         text: "1O1V 旨在为经过验证的收藏家保护与传承非凡的创意与卓越工艺，尽在闭门之后。"
+      },
+      ja: {
+        label: "キー",
+        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 チューリッヒ, スイス</span>",
+        text: "1O1Vは、認証されたコレクターのために、非公開の場所で特別な創造性と職人技を保存・保護するために作られています。"
+      },
+      ko: {
+        label: "키",
+        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 취리히, 스위스</span>",
+        text: "1O1V는 검증된 수집가를 위해 닫힌 문 뒤에서 특별한 창의성과 장인 정신을 보존하고 보호하기 위해 설립되었습니다."
       }
     };
 
@@ -254,10 +262,7 @@
       document.getElementById('key-label').innerText = data.label;
       document.getElementById('intro-text').innerText = data.text;
       document.getElementById('footer-address').innerHTML = data.address;
-
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
-      });
+      document.getElementById('lang-select').value = translations[lang] ? lang : 'en';
     }
 
     const userLang = (navigator.language || navigator.userLanguage).slice(0, 2).toLowerCase();
