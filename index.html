@@ -1,2 +1,121 @@
-1o1v
-by invite only 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1O1V</title>
+  <style>
+    /* Reset & Basisinstellingen */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    /* Container met Achtergrond (Standaard Mobiel) */
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+      background-image: url('bg-mobile.jpg'); /* Achtergrond voor mobiel */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* Desktop Achtergrond via Media Query */
+    @media (min-width: 768px) {
+      .container {
+        background-image: url('bg-desktop.jpg'); /* Achtergrond voor desktop */
+        padding: 60px 20px 40px 20px;
+      }
+    }
+
+    /* Logo bovenaan */
+    .logo-container {
+      margin-top: 10px;
+    }
+
+    .logo {
+      height: 55px; /* Pas de hoogte eventueel aan voor jouw logo afmeting */
+      width: auto;
+      display: block;
+    }
+
+    /* Input Sectie (Midden) */
+    .key-form {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .key-label {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      margin-right: 15px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .key-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+      color: #ffffff;
+      font-size: 16px;
+      padding: 4px 0;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .key-input:focus {
+      border-bottom-color: #ffffff;
+    }
+
+    /* Adres onderaan */
+    .footer-address {
+      font-size: 12px;
+      letter-spacing: 0.3px;
+      color: rgba(255, 255, 255, 0.85);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Logo -->
+    <div class="logo-container">
+      <!-- Gebruikt je transparante licht-logo uit GitHub -->
+      <img src="1O1V-signage-light.png" alt="1O1V Logo" class="logo">
+    </div>
+
+    <!-- Input Veld -->
+    <form class="key-form" onsubmit="event.preventDefault();">
+      <label for="key" class="key-label">key</label>
+      <input type="password" id="key" name="key" class="key-input" autocomplete="off" autofocus>
+    </form>
+
+    <!-- Footer Adres -->
+    <div class="footer-address">
+      1O1V Bahnhofstraße 10, 8001 Zürich, Switzerland
+    </div>
+
+  </div>
+
+</body>
+</html>
