@@ -34,7 +34,7 @@
       align-items: center;
       height: 100%;
       min-height: 100dvh;
-      padding: 35px 24px calc(30px + env(safe-area-inset-bottom)) 24px;
+      padding: 40px 32px calc(35px + env(safe-area-inset-bottom)) 32px;
       background-image: url('assets/bg-mobile.jpg');
       background-size: cover;
       background-position: center;
@@ -44,7 +44,7 @@
     @media (min-width: 768px) {
       .container {
         background-image: url('assets/bg-desktop.jpg');
-        padding: 40px 30px 40px 30px;
+        padding: 40px 40px 40px 40px;
       }
     }
 
@@ -63,64 +63,81 @@
       display: block;
     }
 
-    /* Top Right Navigatie (Volledig Geüniformeerd) */
+    /* Top Right Navigatie (Desktop) */
     .top-right-nav {
       position: absolute;
-      top: 25px;
-      right: 25px;
+      top: 30px;
+      right: 32px;
       z-index: 10;
-      display: flex;
+      display: none;
       align-items: center;
-      gap: 18px;
+      gap: 20px;
     }
 
-    .clients-link, .lang-active-btn {
-      color: rgba(255, 255, 255, 0.85);
+    @media (min-width: 768px) {
+      .top-right-nav {
+        display: flex;
+        right: 40px;
+      }
+    }
+
+    .clients-link {
+      color: #ffffff;
       text-decoration: none;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 1.2px;
+      font-size: 12px;
+      letter-spacing: 1px;
       text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.2s ease;
+    }
+
+    .clients-link:hover {
+      opacity: 1;
+    }
+
+    /* Minimalistische Taalkiezer Desktop */
+    .lang-container {
+      position: relative;
+    }
+
+    .lang-active-btn {
       background: none;
       border: none;
-      outline: none;
+      color: #ffffff;
+      font-size: 12px;
+      letter-spacing: 1px;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 4px;
+      opacity: 0.8;
+      transition: opacity 0.2s ease;
       padding: 0;
-      transition: color 0.2s ease;
-      line-height: 1;
     }
 
-    .clients-link:hover, .lang-active-btn:hover {
-      color: #ffffff;
+    .lang-active-btn:hover {
+      opacity: 1;
     }
 
     .lang-active-btn::after {
       content: '▾';
       font-size: 9px;
-      margin-left: 1px;
-    }
-
-    /* Zuivere Glass Dropdown (Geen randen, geen pil) */
-    .lang-container {
-      position: relative;
     }
 
     .lang-menu {
       position: absolute;
-      top: 150%;
+      top: 130%;
       right: 0;
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 8px;
+      background: rgba(15, 12, 8, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
       padding: 6px 0;
       display: none;
       flex-direction: column;
-      min-width: 60px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      min-width: 65px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
 
     .lang-menu.open {
@@ -133,23 +150,103 @@
       color: rgba(255, 255, 255, 0.7);
       font-size: 11px;
       letter-spacing: 1px;
-      padding: 6px 10px;
+      padding: 6px 12px;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s ease;
-      border-radius: 4px;
-      margin: 1px 4px;
     }
 
-    .lang-option:hover {
+    .lang-option:hover, .lang-option.selected {
       color: #ffffff;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.1);
     }
 
-    .lang-option.selected {
+    /* Hamburgermenu Knoppen (Mobiel) */
+    .hamburger-btn {
+      position: absolute;
+      top: 32px;
+      right: 28px;
+      z-index: 20;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .hamburger-btn {
+        display: none;
+      }
+    }
+
+    .hamburger-line {
+      width: 22px;
+      height: 1px;
+      background-color: #ffffff;
+      transition: all 0.3s ease;
+    }
+
+    /* Mobile Glassmorphism Overlay Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100dvh;
+      background: rgba(10, 8, 5, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 15;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-clients-link {
       color: #ffffff;
-      background: rgba(255, 255, 255, 0.15);
-      font-weight: 500;
+      text-decoration: none;
+      font-size: 18px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 10px;
+    }
+
+    .mobile-lang-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px 30px;
+      text-align: center;
+    }
+
+    .mobile-lang-btn {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 15px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      padding: 6px 12px;
+    }
+
+    .mobile-lang-btn.selected {
+      color: #ffffff;
+      font-weight: 600;
+      border-bottom: 1px solid #ffffff;
     }
 
     /* Midden Content */
@@ -158,23 +255,31 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 440px;
+      max-width: 100%;
       margin: auto 0;
     }
 
+    /* Introductietekst (2x ZO GROOT OP MOBIEL) */
     .intro-text {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 1.6;
-      letter-spacing: 0.2px;
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1.5;
+      letter-spacing: -0.2px;
       color: #ffffff;
       text-align: center;
+      padding: 0 10px;
     }
 
     @media (min-width: 768px) {
+      .content-center {
+        max-width: 480px;
+      }
       .intro-text {
         font-size: 14px;
+        font-weight: 400;
         line-height: 1.7;
+        letter-spacing: 0.2px;
+        padding: 0;
       }
     }
 
@@ -185,7 +290,7 @@
       letter-spacing: 0.4px;
       color: rgba(255, 255, 255, 0.85);
       text-align: center;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     .footer-address span {
@@ -206,7 +311,7 @@
 
   <div class="container">
     
-    <!-- Top Right Navigatie -->
+    <!-- Top Right Navigatie (Desktop) -->
     <div class="top-right-nav">
       <a href="#clients" class="clients-link">clients</a>
 
@@ -222,6 +327,27 @@
           <button class="lang-option" onclick="selectLanguage('ja')">JA</button>
           <button class="lang-option" onclick="selectLanguage('ko')">KO</button>
         </div>
+      </div>
+    </div>
+
+    <!-- Hamburgermenu Knop (Mobiel) -->
+    <button class="hamburger-btn" id="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+      <div class="hamburger-line"></div>
+      <div class="hamburger-line"></div>
+    </button>
+
+    <!-- Mobiel Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#clients" class="mobile-clients-link" onclick="toggleMobileMenu()">Clients</a>
+      <div class="mobile-lang-grid">
+        <button class="mobile-lang-btn" onclick="selectLanguage('en')">EN</button>
+        <button class="mobile-lang-btn" onclick="selectLanguage('fr')">FR</button>
+        <button class="mobile-lang-btn" onclick="selectLanguage('it')">IT</button>
+        <button class="mobile-lang-btn" onclick="selectLanguage('de')">DE</button>
+        <button class="mobile-lang-btn" onclick="selectLanguage('es')">ES</button>
+        <button class="mobile-lang-btn" onclick="selectLanguage('zh')">ZH</button>
+        <button class="mobile-lang-btn" onclick="selectLanguage('ja')">JA</button>
+        <button class="mobile-lang-btn" onclick="selectLanguage('ko')">KO</button>
       </div>
     </div>
 
@@ -284,6 +410,10 @@
       document.getElementById('lang-menu').classList.toggle('open');
     }
 
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    }
+
     function selectLanguage(lang) {
       const data = translations[lang] || translations.en;
       
@@ -291,16 +421,23 @@
       document.getElementById('footer-address').innerHTML = data.address;
       document.getElementById('lang-btn').innerText = lang.toUpperCase();
 
+      // Update Desktop Selection
       document.querySelectorAll('.lang-option').forEach(btn => {
         btn.classList.toggle('selected', btn.innerText.toLowerCase() === lang);
       });
 
+      // Update Mobile Selection
+      document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
+        btn.classList.toggle('selected', btn.innerText.toLowerCase() === lang);
+      });
+
       document.getElementById('lang-menu').classList.remove('open');
+      document.getElementById('mobile-menu').classList.remove('open');
     }
 
     document.addEventListener('click', function(e) {
       const container = document.querySelector('.lang-container');
-      if (!container.contains(e.target)) {
+      if (container && !container.contains(e.target)) {
         document.getElementById('lang-menu').classList.remove('open');
       }
     });
