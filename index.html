@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>1O1V</title>
   
-  <!-- Gouden Bolletje Favicon -->
+  <!-- Gouden Bolletje Favicon (PNG) -->
   <link rel="icon" type="image/png" href="assets/favicon.png">
 
   <style>
@@ -25,7 +25,7 @@
       overflow: hidden;
     }
 
-    /* Container met Achtergrond (Standaard Mobiel) */
+    /* Container met Achtergrond */
     .container {
       position: relative;
       display: flex;
@@ -44,11 +44,11 @@
     @media (min-width: 768px) {
       .container {
         background-image: url('assets/bg-desktop.jpg');
-        padding: 50px 30px 40px 30px;
+        padding: 40px 30px 40px 30px;
       }
     }
 
-    /* Header met geatropineerd Centraal Logo & Taalschakelaar */
+    /* Header: Logo gecentreerd */
     .header {
       position: relative;
       width: 100%;
@@ -58,19 +58,21 @@
       margin-top: 5px;
     }
 
+    /* Mobiel Formaat Logo */
     .logo {
       height: 48px;
       width: auto;
       display: block;
     }
 
+    /* Desktop Formaat Logo (Hersteld) */
     @media (min-width: 768px) {
       .logo {
         height: 55px;
       }
     }
 
-    /* Taalschakelaar los van de stroom (duwt het logo niet weg) */
+    /* Taalschakelaar rechts uitgelijnd zonder het logo te verschuiven */
     .lang-switch {
       position: absolute;
       right: 0;
@@ -99,17 +101,17 @@
       border-bottom: 1px solid #ffffff;
     }
 
-    /* Midden Sectie (Formulier + Beschrijving) */
+    /* Midden Sectie */
     .content-center {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
       max-width: 340px;
-      margin: auto 0; /* Zorgt voor perfecte verticale centrering */
+      margin: auto 0;
     }
 
-    /* Introductietekst Boven of Onder */
+    /* Introductietekst (Strak, GEEN schaduwen) */
     .intro-text {
       font-size: 13.5px;
       font-weight: 400;
@@ -117,15 +119,13 @@
       letter-spacing: 0.2px;
       color: rgba(255, 255, 255, 0.92);
       text-align: center;
-      margin-bottom: 35px; /* Ruime spatiëring tot het key-veld */
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+      margin-bottom: 35px;
     }
 
     @media (min-width: 768px) {
       .intro-text {
         font-size: 14px;
         line-height: 1.7;
-        margin-bottom: 40px;
       }
     }
 
@@ -142,7 +142,6 @@
       letter-spacing: 0.5px;
       margin-right: 15px;
       color: rgba(255, 255, 255, 0.9);
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     }
 
     .key-input {
@@ -161,7 +160,7 @@
       border-bottom-color: #ffffff;
     }
 
-    /* Adres onderaan */
+    /* Adres onderaan (GEEN schaduwen) */
     .footer-address {
       font-size: 12.5px;
       font-weight: 400;
@@ -169,7 +168,6 @@
       color: rgba(255, 255, 255, 0.85);
       text-align: center;
       line-height: 1.5;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
     }
 
     .footer-address span {
@@ -190,7 +188,7 @@
 
   <div class="container">
     
-    <!-- Header: Logo strak in het midden, talen rechts -->
+    <!-- Header -->
     <header class="header">
       <img src="1O1V-signage-light.png" alt="1O1V Logo" class="logo">
       <nav class="lang-switch">
@@ -202,10 +200,10 @@
       </nav>
     </header>
 
-    <!-- Midden Content (Mooi gebalanceerd) -->
+    <!-- Midden Content -->
     <main class="content-center">
       <div class="intro-text" id="intro-text">
-        <!-- Content wordt dynamisch geladen via JS -->
+        <!-- Dynamisch geladen via JS -->
       </div>
 
       <form class="key-form" onsubmit="event.preventDefault();">
@@ -257,13 +255,11 @@
       document.getElementById('intro-text').innerText = data.text;
       document.getElementById('footer-address').innerHTML = data.address;
 
-      // Active state op taalknoppen
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
       });
     }
 
-    // Automatische taaldetectie
     const userLang = (navigator.language || navigator.userLanguage).slice(0, 2).toLowerCase();
     setLanguage(translations[userLang] ? userLang : 'en');
   </script>
