@@ -85,33 +85,24 @@
       font-size: 15px;
       letter-spacing: 1px;
       padding: 4px 0;
+      line-height: 1.2;
       outline: none;
-      transition: all 0.3s ease;
+      transition: border-color 0.3s ease;
     }
 
     .key-input:focus {
       border-bottom-color: #ffffff;
     }
 
-    /* Foutmodus: Ingetogen, ultra-luxe & perfecte spatiëring */
+    /* Foutmodus: Kleine letters, gecentreerd & geen verspringing */
     .key-input.error {
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.8);
-      border-bottom-color: rgba(255, 255, 255, 0.9);
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-      animation: fadeInError 0.4s ease-out forwards;
-    }
-
-    @keyframes fadeInError {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.8px;
+      text-align: center; /* Gecentreerd boven de lijn */
+      text-transform: lowercase; /* Geen schreeuwende caps meer */
+      color: rgba(255, 255, 255, 0.85);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
     }
 
     /* Adres onderaan - Geoptimaliseerd voor mobiel */
@@ -173,12 +164,12 @@
         isShowingError = true;
         input.type = 'text';
         input.classList.add('error');
-        input.value = 'ACCESS UNAUTHORIZED';
+        input.value = 'access unauthorized';
         input.blur();
       }
     });
 
-    // Reset zodra de gebruiker weer typt of klikt
+    // Reset direct zodra de gebruiker weer klikt of typt
     input.addEventListener('focus', resetInput);
     input.addEventListener('keydown', resetInput);
 
