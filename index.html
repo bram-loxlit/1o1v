@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>1O1V</title>
   
+  <!-- Gouden Bolletje Favicon -->
   <link rel="icon" type="image/png" href="assets/favicon.png">
 
   <style>
+    /* Reset & Basisinstellingen */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -23,7 +25,7 @@
       overflow: hidden;
     }
 
-    /* Container */
+    /* Container met Achtergrond (Standaard Mobiel) */
     .container {
       position: relative;
       display: flex;
@@ -32,7 +34,7 @@
       align-items: center;
       height: 100%;
       min-height: 100dvh;
-      padding: 30px 20px calc(25px + env(safe-area-inset-bottom)) 20px;
+      padding: 35px 24px calc(30px + env(safe-area-inset-bottom)) 24px;
       background-image: url('assets/bg-mobile.jpg');
       background-size: cover;
       background-position: center;
@@ -42,29 +44,42 @@
     @media (min-width: 768px) {
       .container {
         background-image: url('assets/bg-desktop.jpg');
-        padding: 40px 40px 30px 40px;
+        padding: 50px 30px 40px 30px;
       }
     }
 
-    /* Taalwissel Rechtsboven */
-    .lang-switch {
-      position: absolute;
-      top: 25px;
-      right: 20px;
+    /* Header met geatropineerd Centraal Logo & Taalschakelaar */
+    .header {
+      position: relative;
+      width: 100%;
       display: flex;
-      gap: 8px;
-      font-size: 11px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      z-index: 10;
+      justify-content: center;
+      align-items: center;
+      margin-top: 5px;
+    }
+
+    .logo {
+      height: 48px;
+      width: auto;
+      display: block;
     }
 
     @media (min-width: 768px) {
-      .lang-switch {
-        top: 35px;
-        right: 40px;
-        gap: 12px;
+      .logo {
+        height: 55px;
       }
+    }
+
+    /* Taalschakelaar los van de stroom (duwt het logo niet weg) */
+    .lang-switch {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.8px;
     }
 
     .lang-btn {
@@ -72,9 +87,9 @@
       border: none;
       color: #ffffff;
       cursor: pointer;
-      padding: 2px;
+      padding: 2px 0;
       font-size: 11px;
-      opacity: 0.5;
+      opacity: 0.55;
       transition: opacity 0.2s ease;
     }
 
@@ -84,73 +99,60 @@
       border-bottom: 1px solid #ffffff;
     }
 
-    /* Logo Centraal Bovenaan */
-    .logo-container {
-      margin-top: 5px;
-    }
-
-    .logo {
-      height: 32px;
-      width: auto;
-      display: block;
-    }
-
-    @media (min-width: 768px) {
-      .logo {
-        height: 38px;
-      }
-    }
-
-    /* Midden Sectie */
+    /* Midden Sectie (Formulier + Beschrijving) */
     .content-center {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 520px; /* Breder gemaakt zodat teksten mooi op 1-2 regels passen */
+      max-width: 340px;
+      margin: auto 0; /* Zorgt voor perfecte verticale centrering */
     }
 
+    /* Introductietekst Boven of Onder */
     .intro-text {
       font-size: 13.5px;
-      font-weight: 300;
+      font-weight: 400;
       line-height: 1.6;
       letter-spacing: 0.2px;
-      color: rgba(255, 255, 255, 0.95);
+      color: rgba(255, 255, 255, 0.92);
       text-align: center;
-      margin-bottom: 35px;
+      margin-bottom: 35px; /* Ruime spatiëring tot het key-veld */
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
     }
 
     @media (min-width: 768px) {
       .intro-text {
-        font-size: 14.5px;
-        line-height: 1.6;
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 40px;
       }
     }
 
-    /* Input Formulier */
+    /* Input Sectie */
     .key-form {
       display: flex;
       align-items: center;
       width: 100%;
-      max-width: 360px;
     }
 
     .key-label {
-      font-size: 14px;
-      font-weight: 300;
+      font-size: 15px;
+      font-weight: 400;
       letter-spacing: 0.5px;
       margin-right: 15px;
       color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     }
 
     .key-input {
       flex: 1;
       background: transparent;
       border: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.8);
       color: #ffffff;
       font-size: 16px;
-      padding: 4px 0;
+      padding: 6px 0;
       outline: none;
       transition: border-color 0.3s ease;
     }
@@ -159,14 +161,15 @@
       border-bottom-color: #ffffff;
     }
 
-    /* Adres Onderaan */
+    /* Adres onderaan */
     .footer-address {
-      font-size: 12px;
-      font-weight: 300;
+      font-size: 12.5px;
+      font-weight: 400;
       letter-spacing: 0.4px;
       color: rgba(255, 255, 255, 0.85);
       text-align: center;
-      line-height: 1.4;
+      line-height: 1.5;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
     }
 
     .footer-address span {
@@ -174,6 +177,9 @@
     }
 
     @media (min-width: 768px) {
+      .footer-address {
+        font-size: 12px;
+      }
       .footer-address span {
         display: inline;
       }
@@ -184,36 +190,34 @@
 
   <div class="container">
     
-    <!-- Taalwissel Rechtsboven -->
-    <div class="lang-switch">
-      <button class="lang-btn" onclick="setLanguage('en')">EN</button>
-      <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
-      <button class="lang-btn" onclick="setLanguage('it')">IT</button>
-      <button class="lang-btn" onclick="setLanguage('de')">DE</button>
-      <button class="lang-btn" onclick="setLanguage('zh')">ZH</button>
-    </div>
-
-    <!-- Logo Centraal Bovenaan -->
-    <div class="logo-container">
+    <!-- Header: Logo strak in het midden, talen rechts -->
+    <header class="header">
       <img src="1O1V-signage-light.png" alt="1O1V Logo" class="logo">
-    </div>
+      <nav class="lang-switch">
+        <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
+        <button class="lang-btn" onclick="setLanguage('it')">IT</button>
+        <button class="lang-btn" onclick="setLanguage('de')">DE</button>
+        <button class="lang-btn" onclick="setLanguage('zh')">ZH</button>
+      </nav>
+    </header>
 
-    <!-- Midden Content -->
-    <div class="content-center">
+    <!-- Midden Content (Mooi gebalanceerd) -->
+    <main class="content-center">
       <div class="intro-text" id="intro-text">
-        <!-- Content via JS -->
+        <!-- Content wordt dynamisch geladen via JS -->
       </div>
 
       <form class="key-form" onsubmit="event.preventDefault();">
         <label for="key" id="key-label" class="key-label">key</label>
         <input type="password" id="key" name="key" class="key-input" autocomplete="off" autofocus>
       </form>
-    </div>
+    </main>
 
-    <!-- Adres Onderaan -->
-    <div class="footer-address" id="footer-address">
+    <!-- Footer Adres -->
+    <footer class="footer-address" id="footer-address">
       <span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Switzerland</span>
-    </div>
+    </footer>
 
   </div>
 
@@ -232,7 +236,7 @@
       it: {
         label: "chiave",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zurigo, Svizzera</span>",
-        text: "1O1V è nato per preservare e proteggere una creatività e una maestria artigianale d'eccezione per collezionisti verificati, a porte chiuse."
+        text: "1O1V è nato per preservare e proteggere la creatività e la maestria artigianale d'eccezione per collezionisti verificati, a porte chiuse."
       },
       de: {
         label: "Schlüssel",
@@ -242,7 +246,7 @@
       zh: {
         label: "密钥",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 苏黎世, 瑞士</span>",
-        text: "1O1V 旨在为经过验证的收藏家保护与传承卓越的非凡创意与工艺，尽在闭门之后。"
+        text: "1O1V 旨在为经过验证的收藏家保护与传承非凡的创意与卓越工艺，尽在闭门之后。"
       }
     };
 
@@ -253,11 +257,13 @@
       document.getElementById('intro-text').innerText = data.text;
       document.getElementById('footer-address').innerHTML = data.address;
 
+      // Active state op taalknoppen
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
       });
     }
 
+    // Automatische taaldetectie
     const userLang = (navigator.language || navigator.userLanguage).slice(0, 2).toLowerCase();
     setLanguage(translations[userLang] ? userLang : 'en');
   </script>
