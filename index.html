@@ -63,7 +63,7 @@
       display: block;
     }
 
-    /* Top Right Menu (Navigatie + Taalkiezer) */
+    /* Top Right Navigatie (Volledig Geüniformeerd) */
     .top-right-nav {
       position: absolute;
       top: 25px;
@@ -71,65 +71,56 @@
       z-index: 10;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
     }
 
-    .clients-link {
-      color: #ffffff;
+    .clients-link, .lang-active-btn {
+      color: rgba(255, 255, 255, 0.85);
       text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 1px;
-      opacity: 0.8;
-      transition: opacity 0.2s ease;
-    }
-
-    .clients-link:hover {
-      opacity: 1;
-    }
-
-    /* Minimalistische Taalkiezer (Puur tekst + pijltje) */
-    .lang-container {
-      position: relative;
-    }
-
-    .lang-active-btn {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
       background: none;
       border: none;
-      color: #ffffff;
-      font-size: 12px;
-      letter-spacing: 1px;
+      outline: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 4px;
-      opacity: 0.8;
-      transition: opacity 0.2s ease;
       padding: 0;
+      transition: color 0.2s ease;
+      line-height: 1;
     }
 
-    .lang-active-btn:hover {
-      opacity: 1;
+    .clients-link:hover, .lang-active-btn:hover {
+      color: #ffffff;
     }
 
     .lang-active-btn::after {
       content: '▾';
       font-size: 9px;
+      margin-left: 1px;
+    }
+
+    /* Zuivere Glass Dropdown (Geen randen, geen pil) */
+    .lang-container {
+      position: relative;
     }
 
     .lang-menu {
       position: absolute;
-      top: 130%;
+      top: 150%;
       right: 0;
-      background: rgba(15, 12, 8, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 8px;
       padding: 6px 0;
       display: none;
       flex-direction: column;
-      min-width: 65px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      min-width: 60px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
     }
 
     .lang-menu.open {
@@ -142,15 +133,23 @@
       color: rgba(255, 255, 255, 0.7);
       font-size: 11px;
       letter-spacing: 1px;
-      padding: 6px 12px;
+      padding: 6px 10px;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s ease;
+      border-radius: 4px;
+      margin: 1px 4px;
     }
 
-    .lang-option:hover, .lang-option.selected {
+    .lang-option:hover {
       color: #ffffff;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .lang-option.selected {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.15);
+      font-weight: 500;
     }
 
     /* Midden Content */
@@ -159,12 +158,12 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 380px;
+      max-width: 440px;
       margin: auto 0;
     }
 
     .intro-text {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 400;
       line-height: 1.6;
       letter-spacing: 0.2px;
