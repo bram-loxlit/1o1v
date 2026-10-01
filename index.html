@@ -48,9 +48,8 @@
       }
     }
 
-    /* Header: Logo strak gecentreerd */
+    /* Header & Gecentreerd Logo */
     .header {
-      position: relative;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -58,35 +57,84 @@
       margin-top: 5px;
     }
 
-    /* Logo op desktop weer subtiel en klein */
     .logo {
       height: 38px;
       width: auto;
       display: block;
     }
 
-    /* Subtiele Dropdown Rechtsboven */
-    .lang-dropdown {
+    /* Custom Glassmorphism Taalkiezer Rechtsboven */
+    .lang-container {
       position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      color: #ffffff;
-      font-size: 11px;
-      letter-spacing: 1px;
-      outline: none;
-      cursor: pointer;
-      opacity: 0.75;
-      padding: 2px 0;
-      text-transform: uppercase;
+      top: 25px;
+      right: 25px;
+      z-index: 10;
     }
 
-    .lang-dropdown option {
-      background: #111111;
+    .lang-active-btn {
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
       color: #ffffff;
-      font-size: 12px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      padding: 6px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .lang-active-btn:hover {
+      background: rgba(0, 0, 0, 0.5);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .lang-active-btn::after {
+      content: '▾';
+      font-size: 9px;
+      opacity: 0.7;
+    }
+
+    .lang-menu {
+      position: absolute;
+      top: 110%;
+      right: 0;
+      background: rgba(15, 12, 8, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 6px 0;
+      display: none;
+      flex-direction: column;
+      min-width: 75px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .lang-menu.open {
+      display: flex;
+    }
+
+    .lang-option {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      padding: 8px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lang-option:hover, .lang-option.selected {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      font-weight: 600;
     }
 
     /* Midden Sectie */
@@ -95,17 +143,17 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 340px;
+      max-width: 360px;
       margin: auto 0;
     }
 
-    /* Introductietekst (GEEN schaduw) */
+    /* Introductietekst (Mooie leesbaarheid op mobiel) */
     .intro-text {
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 400;
-      line-height: 1.6;
+      line-height: 1.65;
       letter-spacing: 0.2px;
-      color: rgba(255, 255, 255, 0.92);
+      color: #ffffff;
       text-align: center;
       margin-bottom: 35px;
     }
@@ -117,7 +165,7 @@
       }
     }
 
-    /* Input Sectie */
+    /* Input Formulier */
     .key-form {
       display: flex;
       align-items: center;
@@ -142,13 +190,14 @@
       padding: 6px 0;
       outline: none;
       transition: border-color 0.3s ease;
+      border-radius: 0;
     }
 
     .key-input:focus {
       border-bottom-color: #ffffff;
     }
 
-    /* Adres onderaan (GEEN schaduw) */
+    /* Footer Adres */
     .footer-address {
       font-size: 12.5px;
       font-weight: 400;
@@ -176,30 +225,33 @@
 
   <div class="container">
     
+    <!-- Custom Glass Taalkiezer -->
+    <div class="lang-container">
+      <button class="lang-active-btn" id="lang-btn" onclick="toggleLangMenu()">EN</button>
+      <div class="lang-menu" id="lang-menu">
+        <button class="lang-option" onclick="selectLanguage('en')">EN</button>
+        <button class="lang-option" onclick="selectLanguage('fr')">FR</button>
+        <button class="lang-option" onclick="selectLanguage('it')">IT</button>
+        <button class="lang-option" onclick="selectLanguage('de')">DE</button>
+        <button class="lang-option" onclick="selectLanguage('es')">ES</button>
+        <button class="lang-option" onclick="selectLanguage('zh')">ZH</button>
+        <button class="lang-option" onclick="selectLanguage('ja')">JA</button>
+        <button class="lang-option" onclick="selectLanguage('ko')">KO</button>
+      </div>
+    </div>
+
     <!-- Header -->
     <header class="header">
       <img src="1O1V-signage-light.png" alt="1O1V Logo" class="logo">
-      
-      <!-- Dropdown Talen -->
-      <select id="lang-select" class="lang-dropdown" onchange="setLanguage(this.value)">
-        <option value="en">EN</option>
-        <option value="fr">FR</option>
-        <option value="it">IT</option>
-        <option value="de">DE</option>
-        <option value="es">ES</option>
-        <option value="zh">ZH</option>
-        <option value="ja">JA</option>
-        <option value="ko">KO</option>
-      </select>
     </header>
 
     <!-- Midden Content -->
     <main class="content-center">
       <div class="intro-text" id="intro-text">
-        <!-- Dynamisch via JS -->
+        <!-- Dynamisch geladen -->
       </div>
 
-      <form class="key-form" onsubmit="event.preventDefault();">
+      <form class="key-form" id="key-form" onsubmit="handleKeySubmit(event)">
         <label for="key" id="key-label" class="key-label">key</label>
         <input type="password" id="key" name="key" class="key-input" autocomplete="off" autofocus>
       </form>
@@ -256,17 +308,47 @@
       }
     };
 
-    function setLanguage(lang) {
+    function toggleLangMenu() {
+      document.getElementById('lang-menu').classList.toggle('open');
+    }
+
+    function selectLanguage(lang) {
       const data = translations[lang] || translations.en;
       
       document.getElementById('key-label').innerText = data.label;
       document.getElementById('intro-text').innerText = data.text;
       document.getElementById('footer-address').innerHTML = data.address;
-      document.getElementById('lang-select').value = translations[lang] ? lang : 'en';
+      document.getElementById('lang-btn').innerText = lang.toUpperCase();
+
+      document.querySelectorAll('.lang-option').forEach(btn => {
+        btn.classList.toggle('selected', btn.innerText.toLowerCase() === lang);
+      });
+
+      document.getElementById('lang-menu').classList.remove('open');
     }
 
+    // Sluit menu als buiten geklikt wordt
+    document.addEventListener('click', function(e) {
+      const container = document.querySelector('.lang-container');
+      if (!container.contains(e.target)) {
+        document.getElementById('lang-menu').classList.remove('open');
+      }
+    });
+
+    // Verwerking van Enter op de sleutel
+    function handleKeySubmit(event) {
+      event.preventDefault();
+      const inputVal = document.getElementById('key').value.trim();
+      
+      if (inputVal.length > 0) {
+        // Hier kun je de logica/redirect plaatsen wanneer iemand de juiste sleutel invoert
+        console.log("Submitted key:", inputVal);
+      }
+    }
+
+    // Automatische taaldetectie
     const userLang = (navigator.language || navigator.userLanguage).slice(0, 2).toLowerCase();
-    setLanguage(translations[userLang] ? userLang : 'en');
+    selectLanguage(translations[userLang] ? userLang : 'en');
   </script>
 
 </body>
