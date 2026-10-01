@@ -84,7 +84,7 @@
       border-bottom: 1px solid #ffffff;
     }
 
-    /* Logo Centraal Bovenaan (Klein) */
+    /* Logo Centraal Bovenaan */
     .logo-container {
       margin-top: 5px;
     }
@@ -101,36 +101,28 @@
       }
     }
 
-    /* Midden Sectie: Introductie tekst daaronder & Key Formulier */
+    /* Midden Sectie */
     .content-center {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 360px;
+      max-width: 520px; /* Breder gemaakt zodat teksten mooi op 1-2 regels passen */
     }
 
     .intro-text {
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 300;
       line-height: 1.6;
       letter-spacing: 0.2px;
       color: rgba(255, 255, 255, 0.95);
       text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .intro-text p {
-      margin-bottom: 8px;
-    }
-
-    .intro-text p:last-child {
-      margin-bottom: 0;
+      margin-bottom: 35px;
     }
 
     @media (min-width: 768px) {
       .intro-text {
-        font-size: 14px;
+        font-size: 14.5px;
         line-height: 1.6;
       }
     }
@@ -140,6 +132,7 @@
       display: flex;
       align-items: center;
       width: 100%;
+      max-width: 360px;
     }
 
     .key-label {
@@ -229,32 +222,27 @@
       en: {
         label: "key",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Switzerland</span>",
-        p1: "1O1V is built to preserve and protect exceptional craftsmanship.",
-        p2: "No algorithms, no public feeds, no instant replication. Only verified collectors, behind a closed door."
+        text: "1O1V is built to preserve and protect exceptional creativity and craftsmanship for verified collectors, behind a closed door."
       },
       fr: {
         label: "clé",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zurich, Suisse</span>",
-        p1: "1O1V est conçu pour préserver et protéger un savoir-faire d'exception.",
-        p2: "Pas d'algorithmes, pas de flux publics, pas de réplication instantanée. Uniquement des collectionneurs vérifiés, derrière une porte close."
+        text: "1O1V est conçu pour préserver et protéger une créativité et un savoir-faire d'exception pour des collectionneurs vérifiés, derrière une porte close."
       },
       it: {
         label: "chiave",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zurigo, Svizzera</span>",
-        p1: "1O1V è nato per preservare e proteggere la maestria artigianale d'eccezione.",
-        p2: "Nessun algoritmo, nessun feed pubblico, nessuna replicazione istantanea. Solo collezionisti verificati, a porte chiuse."
+        text: "1O1V è nato per preservare e proteggere una creatività e una maestria artigianale d'eccezione per collezionisti verificati, a porte chiuse."
       },
       de: {
         label: "Schlüssel",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Schweiz</span>",
-        p1: "1O1V wurde geschaffen, um außergewöhnliche Handwerkskunst zu bewahren und zu schützen.",
-        p2: "Keine Algorithmen, keine öffentlichen Feeds, keine sofortige Vervielfältigung. Nur verifizierte Sammler, hinter verschlossener Tür."
+        text: "1O1V wurde geschaffen, um außergewöhnliche Kreativität und Handwerkskunst für verifizierte Sammler hinter verschlossener Tür zu bewahren und zu schützen."
       },
       zh: {
         label: "密钥",
         address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 苏黎世, 瑞士</span>",
-        p1: "1O1V 旨在保护与传承卓越的非凡工艺。",
-        p2: "无算法，无公开动态，无即时复制。只有经过验证的收藏家，尽在闭门之后。"
+        text: "1O1V 旨在为经过验证的收藏家保护与传承卓越的非凡创意与工艺，尽在闭门之后。"
       }
     };
 
@@ -262,7 +250,7 @@
       const data = translations[lang] || translations.en;
       
       document.getElementById('key-label').innerText = data.label;
-      document.getElementById('intro-text').innerHTML = `<p>${data.p1}</p><p>${data.p2}</p>`;
+      document.getElementById('intro-text').innerText = data.text;
       document.getElementById('footer-address').innerHTML = data.address;
 
       document.querySelectorAll('.lang-btn').forEach(btn => {
