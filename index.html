@@ -143,15 +143,15 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 360px;
+      max-width: 380px;
       margin: auto 0;
     }
 
-    /* Introductietekst (Mooie leesbaarheid op mobiel) */
+    /* Introductietekst (Veel groter op mobiel) */
     .intro-text {
-      font-size: 14px;
+      font-size: 17px;
       font-weight: 400;
-      line-height: 1.65;
+      line-height: 1.6;
       letter-spacing: 0.2px;
       color: #ffffff;
       text-align: center;
@@ -327,7 +327,6 @@
       document.getElementById('lang-menu').classList.remove('open');
     }
 
-    // Sluit menu als buiten geklikt wordt
     document.addEventListener('click', function(e) {
       const container = document.querySelector('.lang-container');
       if (!container.contains(e.target)) {
@@ -335,18 +334,15 @@
       }
     });
 
-    // Verwerking van Enter op de sleutel
     function handleKeySubmit(event) {
       event.preventDefault();
       const inputVal = document.getElementById('key').value.trim();
       
       if (inputVal.length > 0) {
-        // Hier kun je de logica/redirect plaatsen wanneer iemand de juiste sleutel invoert
         console.log("Submitted key:", inputVal);
       }
     }
 
-    // Automatische taaldetectie
     const userLang = (navigator.language || navigator.userLanguage).slice(0, 2).toLowerCase();
     selectLanguage(translations[userLang] ? userLang : 'en');
   </script>
