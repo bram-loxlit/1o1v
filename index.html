@@ -61,12 +61,21 @@
       display: block;
     }
 
-    /* Input Sectie */
+    /* Midden Sectie: Formulier + Manifest */
+    .center-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 380px;
+    }
+
     .key-form {
       display: flex;
       align-items: center;
       width: 100%;
       max-width: 320px;
+      margin-bottom: 30px;
     }
 
     .key-label {
@@ -113,6 +122,24 @@
       box-shadow: none !important;
     }
 
+    /* Manifest Tekst */
+    .manifesto {
+      font-size: 11px;
+      font-weight: 300;
+      line-height: 1.7;
+      letter-spacing: 0.6px;
+      color: rgba(255, 255, 255, 0.65);
+      text-align: center;
+      padding: 0 10px;
+      text-shadow: none;
+    }
+
+    .manifesto span {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
     /* Adres onderaan - Zuiver wit zonder schaduw */
     .footer-address {
       font-size: 12px;
@@ -147,11 +174,21 @@
       <img src="1O1V-signage-light.png" alt="1O1V Logo" class="logo">
     </div>
 
-    <!-- Input Veld -->
-    <form class="key-form" id="keyForm">
-      <label for="key" class="key-label">key</label>
-      <input type="password" id="key" name="key" class="key-input" autocomplete="off" autofocus>
-    </form>
+    <!-- Midden Sectie -->
+    <div class="center-content">
+      <!-- Input Veld -->
+      <form class="key-form" id="keyForm">
+        <label for="key" class="key-label">key</label>
+        <input type="password" id="key" name="key" class="key-input" autocomplete="off" autofocus>
+      </form>
+
+      <!-- Manifest -->
+      <div class="manifesto">
+        1O1V is built to preserve and protect exceptional craftsmanship.<br>
+        No algorithms, no public feeds, no instant replication. Only verified collectors, behind a closed door.
+        <span>Clients by invite only.</span>
+      </div>
+    </div>
 
     <!-- Footer Adres -->
     <div class="footer-address">
