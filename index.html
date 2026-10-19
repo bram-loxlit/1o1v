@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-google-analytics-opt-out="">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -314,7 +313,7 @@
       <div class="lang-container">
         <button class="lang-active-btn" id="lang-btn" onclick="toggleLangMenu()">EN</button>
         <div class="lang-menu" id="lang-menu">
-          <button class="lang-option" onclick="selectLanguage('en')">EN</button>
+          <button class="lang-option selected" onclick="selectLanguage('en')">EN</button>
           <button class="lang-option" onclick="selectLanguage('fr')">FR</button>
           <button class="lang-option" onclick="selectLanguage('it')">IT</button>
           <button class="lang-option" onclick="selectLanguage('de')">DE</button>
@@ -336,7 +335,7 @@
     <div class="mobile-menu" id="mobile-menu">
       <a href="#clients" class="mobile-clients-link" onclick="toggleMobileMenu()">Clients</a>
       <div class="mobile-lang-grid">
-        <button class="mobile-lang-btn" onclick="selectLanguage('en')">EN</button>
+        <button class="mobile-lang-btn selected" onclick="selectLanguage('en')">EN</button>
         <button class="mobile-lang-btn" onclick="selectLanguage('fr')">FR</button>
         <button class="mobile-lang-btn" onclick="selectLanguage('it')">IT</button>
         <button class="mobile-lang-btn" onclick="selectLanguage('de')">DE</button>
@@ -354,50 +353,46 @@
 
     <!-- Midden Content -->
     <main class="content-center">
-      <div class="intro-text" id="intro-text">
-        <!-- Dynamisch geladen via JS -->
-      </div>
+      <div class="intro-text" id="intro-text">1O1V is built to preserve and protect exceptional creativity and craftsmanship for verified collectors, behind a closed door.</div>
     </main>
 
     <!-- Footer Adres -->
-    <footer class="footer-address" id="footer-address">
-      <span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Switzerland</span>
-    </footer>
+    <footer class="footer-address" id="footer-address"><span>1O1V Bahnhofstrasse 10,</span> <span>8001 Zürich, Switzerland</span></footer>
 
   </div>
 
   <script>
     const translations = {
       en: {
-        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Switzerland</span>",
+        address: "<span>1O1V Bahnhofstrasse 10,</span> <span>8001 Zürich, Switzerland</span>",
         text: "1O1V is built to preserve and protect exceptional creativity and craftsmanship for verified collectors, behind a closed door."
       },
       fr: {
-        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zurich, Suisse</span>",
+        address: "<span>1O1V Bahnhofstrasse 10,</span> <span>8001 Zurich, Suisse</span>",
         text: "1O1V est conçu pour préserver et protéger une créativité et un savoir-faire d'exception pour des collectionneurs vérifiés, derrière une porte close."
       },
       it: {
-        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zurigo, Svizzera</span>",
+        address: "<span>1O1V Bahnhofstrasse 10,</span> <span>8001 Zurigo, Svizzera</span>",
         text: "1O1V è nato per preservare e proteggere la creatività e la maestria artigianale d'eccezione per collezionisti verificati, a porte chiuse."
       },
       de: {
-        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zürich, Schweiz</span>",
+        address: "<span>1O1V Bahnhofstrasse 10,</span> <span>8001 Zürich, Schweiz</span>",
         text: "1O1V wurde geschaffen, um außergewöhnliche Kreativität und Handwerkskunst für verifizierte Sammler hinter verschlossener Tür zu bewahren und zu schützen."
       },
       es: {
-        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 Zúrich, Suiza</span>",
+        address: "<span>1O1V Bahnhofstrasse 10,</span> <span>8001 Zúrich, Suiza</span>",
         text: "1O1V está creado para preservar y proteger la creatividad y artesanía excepcionales para coleccionistas verificados, tras una puerta cerrada."
       },
       zh: {
-        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 苏黎世, 瑞士</span>",
+        address: "<span>1O1V Bahnhofstrasse 10,</span> <span>8001 苏黎世, 瑞士</span>",
         text: "1O1V 旨在为经过验证的收藏家保护与传承非凡的创意与卓越工艺，尽在闭门之后。"
       },
       ja: {
-        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 チューリッヒ, スイス</span>",
+        address: "<span>1O1V Bahnhofstrasse 10,</span> <span>8001 チューリッヒ, スイス</span>",
         text: "1O1Vは、認証されたコレクターのために、非公開の場所で特別な創造性と職人技を保存・保護するために作られています。"
       },
       ko: {
-        address: "<span>1O1V Bahnhofstraße 10,</span> <span>8001 취리히, 스위스</span>",
+        address: "<span>1O1V Bahnhofstrasse 10,</span> <span>8001 취리히, 스위스</span>",
         text: "1O1V는 검증된 수집가를 위해 닫힌 문 뒤에서 특별한 창의성과 장인 정신을 보존하고 보호하기 위해 설립되었습니다."
       }
     };
